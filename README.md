@@ -4,6 +4,17 @@ A **PowerShell GUI tool** for **one-click backup and restore of qBittorrent sett
 
 ---
 
+## Screenshots 🖼️
+
+* **Main GUI** – Backup, Restore, Wipe Data, Auto Backup controls.
+* **Backup Folder Selection** – Choose where backups are stored.
+* **Popup Messages** – Visual confirmation for actions like backup success.
+
+> ![App Interface](./screenshot.png)
+> *Replace `screenshot.png` with an actual screenshot of your app GUI.*
+
+---
+
 ## Features ✨
 
 * **One-click backup** 💾 – Saves both `AppData\Local\qBittorrent` and `AppData\Roaming\qBittorrent` into a timestamped ZIP file.
@@ -60,7 +71,7 @@ A **PowerShell GUI tool** for **one-click backup and restore of qBittorrent sett
 1. Clone or download the repository:
 
    ```powershell
-   git clone https://github.com/YourUsername/qBittorrent-Backup-Manager.git
+   git clone https://github.com/livid96/qBittorrent-Backup-Manager.git
    ```
 2. Navigate to the folder:
 
@@ -114,16 +125,6 @@ qbittorrent_auto_YYYY-MM-DD_HH-mm.zip
 
 MIT or Apache 2.0 is recommended for ease of use and contributions.
 
----
-
-## Screenshots 🖼️
-
-* **Main GUI** – Backup, Restore, Wipe Data, Auto Backup controls.
-* **Backup Folder Selection** – Choose where backups are stored.
-* **Popup Messages** – Visual confirmation for actions like backup success.
-
-> ![App Interface](./screenshot.png)
-> *Replace `screenshot.png` with an actual screenshot of your app GUI.*
 
 ---
 
