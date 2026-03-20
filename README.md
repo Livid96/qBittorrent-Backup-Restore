@@ -10,7 +10,7 @@ A **PowerShell GUI tool** for **one-click backup and restore of qBittorrent sett
 * **Backup Folder Selection** – Choose where backups are stored.
 * **Popup Messages** – Visual confirmation for actions like backup success.
 
-> ![App Interface](./screenshot.png)
+> ![App Interface](https://github.com/Livid96/qBittorrent-Backup-Restore/blob/8bc2fe289855356bc15381b3df6f04e55485aecc/Image/Demo.png)
 > *Replace `screenshot.png` with an actual screenshot of your app GUI.*
 
 ---
