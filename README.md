@@ -1,134 +1,140 @@
-# qBittorrent Easy Backup & Restore Toolkit
+# qBittorrent Backup Manager 🚀
 
-![Project Icon](icon.png)  <!-- Replace with your icon file -->
-
-![Project Image](image.png)  <!-- Replace with your main image or diagram -->
+A **PowerShell GUI tool** for **one-click backup and restore of qBittorrent settings and data**, with optional **automatic daily or weekly backups**. It simplifies saving your qBittorrent configuration and restoring it anytime, while keeping your backups organized and automatically deleting backups older than 30 days.
 
 ---
 
-## 🔹 Overview
+## Features ✨
 
-A simple toolkit that makes **backing up, restoring, and wiping qBittorrent data extremely easy**. Designed for users who want a **one-click solution** without navigating hidden system folders.
+* **One-click backup** 💾 – Saves both `AppData\Local\qBittorrent` and `AppData\Roaming\qBittorrent` into a timestamped ZIP file.
+* **One-click restore** 🔄 – Restore any previous backup from a list.
+* **Wipe qBittorrent data** 🧹 – Clear local and roaming qBittorrent data safely.
+* **Auto backup support** ⏰:
 
-This project uses **PowerShell scripts and batch files** to automate the process of saving and restoring your qBittorrent configuration, torrents, and session data.
-
-Perfect for:
-
-* System reinstalls
-* Windows clean installs
-* Migrating qBittorrent to a new PC
-* Protecting your torrent progress from data loss
-
----
-
-## ✨ Features
-
-* **One-click Backup**: Create a full backup of your qBittorrent configuration and session data.
-* **Interactive Restore**: Lists available backups and lets you choose which one to restore.
-* **Safe Data Wipe**: Completely removes qBittorrent data when needed.
-* **Beginner Friendly**: Just double-click `.bat` files — no command line knowledge required.
-* **Organized Backup System**: Backups are automatically stored with date labels.
-* **Automatic Backups**: Set up daily or weekly automatic backups via Windows Task Scheduler.
+  * Daily backup at startup.
+  * Weekly backup on a specified day (default: Sunday 9 PM).
+  * Automatically skips backup if one already exists for the day.
+* **Backup retention** 🗑️ – Automatically deletes backups older than 30 days.
+* **GUI interface** with progress indicators and popup messages.
+* Fully **runs as Administrator** 🛡️ to handle protected folders.
+* Option to **select custom backup folder** 📂.
 
 ---
 
-## 📂 Project Structure
+## How It Works 🛠️
 
-```
-qBittorrent Main Folder
-│
-├── backups
-│   ├── qbittorrent backup "date"
-│   └── qbittorrent backup "date 2"
-│
-├── qbittorrent_backup_script.ps1
-├── backup.bat
-│
-├── qbittorrent_restore_script.ps1
-├── restore.bat
-│
-└── Wipe Data
-    ├── qbittorrent_wipe_script.ps1
-    └── wipe.bat
-```
+1. **Startup & Admin Check**
 
----
+   * Hides console window.
+   * Ensures it runs as Administrator.
 
-## ⏰ Automatic Daily or Weekly Backups
+2. **Backup Process**
 
-You can automate backups to run **daily or weekly** using **Windows Task Scheduler**. This ensures your qBittorrent configuration and session data are safely backed up without manual intervention.
+   * Creates a temporary folder in `%TEMP%`.
+   * Copies Local and Roaming qBittorrent folders.
+   * Compresses them into a ZIP file in your chosen backup folder.
+   * Deletes temporary files.
+   * Cleans backups older than 30 days.
 
-### Setup Instructions
+3. **Restore Process**
 
-1. Press **Win + R**, type `taskschd.msc`, and open **Task Scheduler**.
-2. Click **Create Basic Task**.
-3. Name it `qBittorrent Auto Backup`.
-4. Choose **Daily** or **Weekly**.
-5. For **Action**, select **Start a Program**.
-6. Browse and select `backup.bat`.
-7. Finish the setup.
+   * Extracts the selected ZIP backup.
+   * Overwrites the local and roaming qBittorrent folders.
 
-💡 Tip: Schedule the backup when qBittorrent is **closed** to ensure all session data is saved properly.
+4. **Auto Backup** ⏲️
+
+   * Daily: runs at startup and skips if today's backup exists.
+   * Weekly: runs on the chosen day and skips if backup for the week exists.
+   * Scheduled task is created in Windows Task Scheduler.
+
+5. **User Interface** 🖥️
+
+   * Folder selection for backups.
+   * Backup Now, Restore, Wipe Data buttons.
+   * Progress bar and popup messages for feedback.
 
 ---
 
-## 🔹 How It Works
+## Installation 💡
 
-### Backup
+1. Clone or download the repository:
 
-Run:
+   ```powershell
+   git clone https://github.com/YourUsername/qBittorrent-Backup-Manager.git
+   ```
+2. Navigate to the folder:
 
-```
-backup.bat
-```
+   ```powershell
+   cd qBittorrent-Backup-Manager
+   ```
+3. Run the script:
 
-* Automatically creates a **timestamped backup**
-* Stores it inside the `backups` folder
-
-### Restore
-
-Run:
-
-```
-restore.bat
-```
-
-* Shows available backups
-* Lets you choose a backup number to restore
-
-### Wipe Data
-
-Run:
-
-```
-wipe.bat
-```
-
-* Completely removes all qBittorrent data
-
-⚠ **Warning:** Always create a backup before wiping data.
+   ```powershell
+   powershell.exe -ExecutionPolicy Bypass -File .\qb_manager.ps1
+   ```
+4. On first run, the backup folder defaults to your Desktop, but you can change it via the **Select Backup Folder** button.
 
 ---
 
-## 🛠 Requirements
+## Usage 🎮
 
-* Windows
-* qBittorrent installed
-* PowerShell
+* **Backup Now** 💾 – Creates a timestamped backup immediately.
+* **Restore Backup** 🔄 – Select a backup from the list and restore it.
+* **Wipe Data** 🧹 – Clears all qBittorrent settings and data.
+* **Enable Auto Backup** ⏰ – Choose daily or weekly automated backup.
+* **Disable Auto Backup** ❌ – Removes scheduled backup tasks.
 
 ---
 
-## 📜 License
+## File Naming 📝
 
-This project uses the **MIT License**. You are free to use, modify, and share it.
+Backups are stored with this format:
 
-```text
-MIT License
-Copyright (c) 2026 Livid96
+```
+qbittorrent_backup_YYYY-MM-DD_HH-mm.zip
+```
+
+Automatic backups are named:
+
+```
+qbittorrent_auto_YYYY-MM-DD_HH-mm.zip
 ```
 
 ---
 
-## 📢 Note
+## Notes ⚠️
 
-This tool **only backs up qBittorrent configuration and session data**, not the actual downloaded files. Ensure your download directories remain unchanged when restoring.
+* The script **requires Administrator privileges**.
+* Auto backups are handled via **Windows Task Scheduler**.
+* Backups older than **30 days** are automatically deleted to save space.
+
+---
+
+## Recommended License 📜
+
+MIT or Apache 2.0 is recommended for ease of use and contributions.
+
+---
+
+## Screenshots 🖼️
+
+* **Main GUI** – Backup, Restore, Wipe Data, Auto Backup controls.
+* **Backup Folder Selection** – Choose where backups are stored.
+* **Popup Messages** – Visual confirmation for actions like backup success.
+
+> ![App Interface](./screenshot.png)
+> *Replace `screenshot.png` with an actual screenshot of your app GUI.*
+
+---
+
+## Contributing 🤝
+
+* Fork the repository.
+* Make your changes.
+* Submit a Pull Request.
+
+---
+
+## Disclaimer ⚡
+
+This tool modifies qBittorrent's configuration and data. Always ensure qBittorrent is closed during backup or restore. Use at your own risk.
