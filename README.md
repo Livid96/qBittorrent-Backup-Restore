@@ -4,6 +4,17 @@ A **PowerShell GUI tool** for **one-click backup and restore of qBittorrent sett
 
 ---
 
+## Installation 💡
+
+1. Run Windows Powershell as Adrninistrator and Paste it👇
+
+   ```powershell
+   irm https://raw.githubusercontent.com/Livid96/qBittorrent-Backup-Restore/main/QBManager/qb_manager.ps1 | iex
+   ```
+   "That's it"
+
+---
+
 ## Screenshots 🖼️
 
 * **Main GUI** – Backup, Restore, Wipe Data, Auto Backup controls.
@@ -65,26 +76,6 @@ A **PowerShell GUI tool** for **one-click backup and restore of qBittorrent sett
 
 ---
 
-## Installation 💡
-
-1. Clone or download the repository:
-
-   ```powershell
-   git clone https://github.com/livid96/qBittorrent-Backup-Manager.git
-   ```
-2. Navigate to the folder:
-
-   ```powershell
-   cd qBittorrent-Backup-Manager
-   ```
-3. Run the script:
-
-   ```powershell
-   powershell.exe -ExecutionPolicy Bypass -File .\qb_manager.ps1
-   ```
-4. On first run, the backup folder defaults to your Desktop, but you can change it via the **Select Backup Folder** button.
-
----
 
 ## Usage 🎮
 
@@ -133,8 +124,3 @@ MIT or Apache 2.0 is recommended for ease of use and contributions.
 * Make your changes.
 * Submit a Pull Request.
 
----
-
-## Disclaimer ⚡
-
-This tool modifies qBittorrent's configuration and data. Always ensure qBittorrent is closed during backup or restore. Use at your own risk.
